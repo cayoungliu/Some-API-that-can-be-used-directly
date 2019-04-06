@@ -2,7 +2,7 @@
 #include<opencv2/opencv.hpp>
 using namespace std;
 using namespace cv;
-
+//原理：g(x)=alpha*f0(x)+(1-alpha)*f1(x)
 //Warning:因为我们对 src1 和 src2 求 和 ，它们必须要有相同的尺寸（宽度和高度）和类型！！！！！！
 
 int main() {
