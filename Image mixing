@@ -1,0 +1,40 @@
+#include<iostream>
+#include<opencv2/opencv.hpp>
+using namespace std;
+using namespace cv;
+
+//Warning:因为我们对 src1 和 src2 求 和 ，它们必须要有相同的尺寸（宽度和高度）和类型！！！！！！
+
+int main() {
+	
+	Mat src1, src2, dst;
+	src1 = imread("F:/44.jpg");
+	src2 = imread("F:/55.jpg");
+	if (!src1.data) {
+		cout << "can not load the imag of 44.jpg..." << endl;
+		return -1;
+	}
+	if (!src2.data) {
+		cout << "can not load the imag of 55.jpg..." << endl;
+		return -1;
+	}
+
+	double alpha = 0.5;
+	if (src1.rows == src2.rows && src1.cols == src2.cols && src1.type() == src2.type())//两张图必须有完全相同的大小和类型时才能进行混合操作
+  {
+		 addWeighted(src1, alpha, src2, (1.0 - alpha), 0.0, dst);
+		 //multiply(src1, src2, dst, 1.0);//此方法过于生硬，不建议使用
+		imshow("44", src1);
+		imshow("55", src2);
+		namedWindow("blend demo", CV_WINDOW_AUTOSIZE);
+		imshow("blend demo", dst);
+	}
+	else {
+		printf("could not blend images , the size of images is not same...\n");
+		return -1;
+	}
+
+
+	waitKey(0);
+	return 0;
+}
