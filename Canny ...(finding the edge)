@@ -1,3 +1,15 @@
+//Canny边缘检测算法被很多人推崇为当今最优秀的边缘检测算法
+//sobel的轮廓提取明显有没cnany的那么细致，只是把一些明显轮廓的边缘提取出来了
+//Laplacian算法效果一般，图像变得模糊了
+
+//边缘检测的一般步骤：
+//1.滤波——消除噪声
+//2.增强——使边界轮廓更加明显
+//3.检测——选出边缘点
+
+
+
+
 //1.Canny算法
 #include<opencv2\opencv.hpp>   
 #include<opencv2\highgui\highgui.hpp>
