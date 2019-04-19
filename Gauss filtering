@@ -1,0 +1,43 @@
+/*高斯滤波：GaussianBlur函数
+   函数原型：  void GaussianBlur( InputArray src, OutputArray dst, Size ksize,
+                                double sigmaX, double sigmaY = 0,
+                                int borderType = BORDER_DEFAULT );  
+   参数详解：
+   InputArray src-----源图像
+   OutputArray dst-----目标图像
+   Size ksize----高斯内核大小，其中ksize.width和ksize.height可以不同，但是必须为正数
+                        和奇数，也可为零，均有sigma计算而来。
+   double sigmaX----表示高斯函数在X方向的标准偏差
+   double sigmaY---- 表示高斯函数在Y方向的标准偏差
+                               若sigma为零，就将它设为sigmaX,如果两者均为零，就由ksize.width
+                               和ksize.height计算出来。
+   int borderType -----用于推断图像外部像素的某种边界模式。
+                                 默认值 BORDER_DEFAULT           */
+
+/************* 新建QT控制台程序************/
+#include <QCoreApplication>
+#include <opencv2/core/core.hpp>
+#include <opencv2/highgui/highgui.hpp>
+#include <opencv2/imgproc/imgproc.hpp>
+#include <iostream>
+using namespace std;
+using namespace cv;
+
+int main()
+{
+    Mat srcImage=imread("Valley_logo.jpg");//读入原图
+
+    namedWindow("高斯滤波[原图]");
+    namedWindow("高斯滤波[效果图]");
+
+    imshow("高斯滤波[原图]",srcImage);
+
+    //进行高斯滤波操作
+    Mat dstImage;
+    GaussianBlur(srcImage,dstImage,Size(5,5),0,0);
+    //显示效果图
+    imshow("高斯滤波[效果图]",dstImage);
+
+    waitKey(0);
+    return 0;
+}
